@@ -1,6 +1,3 @@
-// 10. Parašyti funkciją telefonoNumeris. Funkcija turi priimti vieną kintamąjį - masyvą. Masyvo elementai - skaičiai, ilgis - 10. Funkcija turi grąžinti telefono numerį tokiu formatu - 
-// "(XXX) XXX-XXXX". (10 taškų)
-
 function randomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -114,11 +111,46 @@ console.log(lygineSuma([1,2],1));
 
 console.groupEnd();
 
-console.groupCollapsed("// 9. Parašyti funkciją pirminisSkaicius. Funkcija turi vieną kintamąjį. Turi būti patikrinimas, kad kintamasis yra skaičius. Funkcija turi grąžinti ar pateiktas skaičius yra pirminis( pirminis) // skaičius yra tas, kuris dalinasi tik iš savęs ir tik iš vieneto be liekanos.) (10 taškų)");
+console.groupCollapsed("// 9. Parašyti funkciją pirminisSkaicius. Funkcija turi vieną kintamąjį. Turi būti patikrinimas, kad kintamasis yra skaičius. Funkcija turi grąžinti ar pateiktas skaičius yra pirminis. (pirminis) skaičius yra tas, kuris dalinasi tik iš savęs ir tik iš vieneto be liekanos.) (10 taškų)");
 
-function pirminisSkaicius(){
-    
+function pirminisSkaicius(a){
+    if(typeof(a) === 'number' && a > 1){
+       for(let i = 2; i < a; i++){
+        if(a % i == 0){
+            return "Skaičius nepirminis"
+        }
+       }
+       return "Skaičius pirminis"
+    } else{
+        return "Kintamasis turi būti skaičius didesnis nei 1"
+    }
 }
+
+console.log(pirminisSkaicius(0));
+console.log(pirminisSkaicius(4));
+console.log(pirminisSkaicius(1))
+console.log(pirminisSkaicius(2));
+console.log(pirminisSkaicius(6))
+console.log(pirminisSkaicius(3))
+console.log(pirminisSkaicius(9))
+
+console.groupEnd();
+
+console.groupCollapsed("// 10. Parašyti funkciją telefonoNumeris. Funkcija turi priimti vieną kintamąjį - masyvą. Masyvo elementai - skaičiai, ilgis - 10. Funkcija turi grąžinti telefono numerį tokiu formatu - (XXX) XXX-XXXX. (10 taškų)");
+
+function telefonoNumeris(arr){
+    if(Array.isArray(arr) && arr.length === 10){
+        return arr.every((el) => {return typeof(el) === 'number'}) ? arr.join('').replace(/(...)(...)(.*)/, '($1) $2-$3') : "Masyvas turi būti sudarytas tik iš skaičių";
+    } else{
+        return "Kintamasis turi būti masyvas, kurio ilgis lygus 10"
+    }
+}
+
+console.log(telefonoNumeris([1,2,3,4,5,6,7,8,9,1]))
+console.log(telefonoNumeris([2,2,2,3,3,3,7,8,9,1]))
+console.log(telefonoNumeris(['a','a','a','a','a','a','a','a','a','a']))
+console.log(telefonoNumeris([1,2,3,4,5,6,7,8,9,1,1]))
+console.log(telefonoNumeris(10))
 
 console.groupEnd();
 
